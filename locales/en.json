@@ -1,8 +1,13 @@
 {
+    "title": {
+        "job_management": "JOB MANAGEMENT",
+        "gang_management": "ORGANIZATION MANAGEMENT"
+    },
     "menu": {
         "grade": "Grade: ",
         "expel_gang": "Expel Gang Member",
         "fire_employee": "Fire Employee",
+        "clockout_employee": "Clockout Employee",
         "manage_gang": "Manage Gang Members",
         "manage_employees": "Manage Employees",
         "citizen_id": "Citizen ID: ",
@@ -37,12 +42,18 @@
         "unable_fire": "You're unable to fire this person...",
         "person_doesnt_exist": "This person doesn't seem to exist...",
         "gang_fired": "Gang member expelled!",
+        "cant_hire": "This person has already a job, can not be hired",
+        "cant_be_hired": "You have already a job, can not be hired",
+        "cant_recruit": "This person has already a job, can not be hired",
+        "cant_be_recruited": "You have already a job, can not be hired",
         "job_fired": "Employee fired!"
     },
     "success": {
         "promoted": "Successfully promoted!",
         "promoted_to": "You've been promoted to ",
         "hired_to": "You've been hired into ",
-        "hired_into": "You hired %s into %s"
+        "hired_into": "You hired %s into %s",
+        "clockout_employee": "You clocked out %s of duty",
+        "clockedout_by": "You were clocked out of duty by %s"
     }
 }
