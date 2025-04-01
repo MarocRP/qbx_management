@@ -66,6 +66,17 @@ local function manageEmployee(player, groupName, groupType)
         end,
     }
 
+    if player.onduty then
+        employeeMenu[#employeeMenu + 1] = {
+            title = locale('menu.clockout_employee'),
+            icon = 'clock',
+            onSelect = function()
+                lib.callback.await('qbx_management:server:clockoutEmployee', false, player.cid)
+                OpenBossMenu(groupType)
+            end,
+        }
+    end
+
     lib.registerContext({
         id = 'memberMenu',
         title = player.name,

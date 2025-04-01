@@ -176,14 +176,34 @@ lib.callback.register('qbx_management:server:hireEmployee', function(source, emp
 
     if groupType == 'job' then
         local success, errorResult = exports.qbx_core:AddPlayerToJob(target.PlayerData.citizenid, groupName, 0)
-        assert(success, errorResult?.message)
+        --assert(success, errorResult?.message)
+        if not success then
+            TriggerClientEvent('ox_lib:notify', source, {title = locale('title.job_management'), description = locale('error.cant_hire'), type = 'error'})
+            TriggerClientEvent('ox_lib:notify', employee, {title = locale('title.job_management'), description = locale('error.cant_be_hired'), type = 'error'})
+            return
+        end
         success, errorResult = exports.qbx_core:SetPlayerPrimaryJob(target.PlayerData.citizenid, groupName)
-        assert(success, errorResult?.message)
+        --assert(success, errorResult?.message)
+        if not success then
+            TriggerClientEvent('ox_lib:notify', source, {title = locale('title.job_management'), description = locale('error.cant_hire'), type = 'error'})
+            TriggerClientEvent('ox_lib:notify', employee, {title = locale('title.job_management'), description = locale('error.cant_be_hired'), type = 'error'})
+            return
+        end
     else
         local success, errorResult = exports.qbx_core:AddPlayerToGang(target.PlayerData.citizenid, groupName, 0)
-        assert(success, errorResult?.message)
+        --assert(success, errorResult?.message)
+        if not success then
+            TriggerClientEvent('ox_lib:notify', source, {title = locale('title.gang_management'), description = locale('error.cant_recruit'), type = 'error'})
+            TriggerClientEvent('ox_lib:notify', employee, {title = locale('title.gang_management'), description = locale('error.cant_be_recruited'), type = 'error'})
+            return
+        end
         success, errorResult = exports.qbx_core:SetPlayerPrimaryGang(target.PlayerData.citizenid, groupName)
-        assert(success, errorResult?.message)
+        --assert(success, errorResult?.message)
+        if not success then
+            TriggerClientEvent('ox_lib:notify', source, {title = locale('title.gang_management'), description = locale('error.cant_recruit'), type = 'error'})
+            TriggerClientEvent('ox_lib:notify', employee, {title = locale('title.gang_management'), description = locale('error.cant_be_recruited'), type = 'error'})
+            return
+        end
     end
 
     exports.qbx_core:Notify(source, locale('success.hired_into', targetFullName, organizationLabel), 'success')
@@ -308,6 +328,18 @@ lib.callback.register('qbx_management:server:fireEmployee', function(source, emp
     else
         exports.qbx_core:Notify(source, locale('error.unable_fire'), 'error')
     end
+end)
+
+lib.callback.register('qbx_management:server:clockoutEmployee', function(source, employee)
+    local player = exports.qbx_core:GetPlayer(source)
+    local clockedoutEmployee = exports.qbx_core:GetPlayerByCitizenId(employee)
+    local playerFullName = player.PlayerData.charinfo.firstname..' '..player.PlayerData.charinfo.lastname
+    if not player.PlayerData.job.isboss then return end
+    if not clockedoutEmployee then lib.print.error("not able to find player with citizenid", employee) return end
+    local employeeFullName = clockedoutEmployee.PlayerData.charinfo.firstname..' '..clockedoutEmployee.PlayerData.charinfo.lastname
+    clockedoutEmployee.Functions.SetJobDuty(false)
+    TriggerClientEvent('ox_lib:notify', source, {title = locale('title.job_management'), description = locale('success.clockout_employee'):format(employeeFullName), type = 'success'})
+    TriggerClientEvent('ox_lib:notify', clockedoutEmployee.PlayerData.source, {title = locale('title.job_management'), description = locale('success.clockedout_by'):format(playerFullName), type = 'success'})
 end)
 
 lib.callback.register('qbx_management:server:getBossMenus', function()

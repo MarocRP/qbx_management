@@ -1,8 +1,13 @@
 {
+    "title": {
+        "job_management": "JOB MANAGEMENT",
+        "gang_management": "ORGANIZATION MANAGEMENT"
+    },
     "menu": {
         "grade": "Grade: ",
         "expel_gang": "Expel Gang Member",
         "fire_employee": "Fire Employee",
+        "clockout_employee": "Clockout Employee",
         "manage_gang": "Manage Gang Members",
         "manage_employees": "Manage Employees",
         "citizen_id": "Citizen ID: ",
@@ -52,6 +57,10 @@
         "unable_fire": "You're unable to fire this person...",
         "person_doesnt_exist": "This person doesn't seem to exist...",
         "gang_fired": "Gang member expelled!",
+        "cant_hire": "This person has already a job, can not be hired",
+        "cant_be_hired": "You have already a job, can not be hired",
+        "cant_recruit": "This person has already a job, can not be hired",
+        "cant_be_recruited": "You have already a job, can not be hired",
         "job_fired": "Employee fired!",
         "too_far": "This person is too far away...",
         "hire_declined": "The person declined your offer."
@@ -60,18 +69,8 @@
         "promoted": "Successfully promoted!",
         "promoted_to": "You've been promoted to ",
         "hired_to": "You've been hired into ",
-        "hired_into": "You hired %s into %s"
-    },
-    "logs": {
-        "retrieved_employees": "Retrieved employees for group %s of type %s",
-        "updated_grade": "Updated grade for citizenId %s from %d to %d in group %s of type %s",
-        "hired_employee": "%s | %s hired %s into %s at grade %s",
-        "retrieved_players": "Retrieved list of players for possible hiring",
-        "fired_employee": "Fired employee %s from group %s of type %s",
-        "fired_employee_success": "%s | %s fired %s from %s",
-        "retrieved_boss_menus": "Retrieved boss menus",
-        "registered_boss_menu": "Registered boss menu for group %s",
-        "player_checkin": "Player %s checked in for job %s",
-        "player_unload": "Player %d unloaded"
+        "hired_into": "You hired %s into %s",
+        "clockout_employee": "You clocked out %s of duty",
+        "clockedout_by": "You were clocked out of duty by %s"
     }
 }
